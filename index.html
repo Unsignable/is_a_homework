@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <script src="./js/echarts.min.js"></script>
+    <script src='./js/echarts-wordcloud.js'></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>林晖如小组</title>
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+
+<body>
+    <div class="home">
+        <div class="content">
+            <div class="stars"></div>
+            <img class="bgc" src="./img/imgs36.jpg" width="100%" alt="">
+            <h3 class="title">林晖如小组</h3>
+            <h3 class="titles">大厂数据分析师</h3>
+            <img class="icon" src="./img/down.png" alt="">
+            <div class='ribbon'>
+                <a href='./index.html'><span>数据展示</span></a>
+                <a href='./about.html'><span>小组相关</span></a>
+            </div>
+        </div>
+        <div class="icons">
+            <div class="icons_items">
+                <a href='./jz.html'><img class="icons_items_imgs" src="./img/jzicon.jpg" alt=""></a>
+                <span>建制</span>
+            </div>
+            <div class="icons_items">
+                <a href='./dtt.html'><img class="icons_items_imgs" src="./img/dticon.jpg" alt=""></a>
+                <span>地铁图</span>
+            </div>
+            <div class="icons_items">
+                <a href='./yw.html'><img class="icons_items_imgs" src="./img/ywicon.png" alt=""></a>
+                <span>云盘和文档</span>
+            </div>
+            <div class="icons_items">
+                <a href='./znt.html'><img class="icons_items_imgs" src="./img/znticon.png" alt=""></a>
+                <span>智能体</span>
+            </div>
+        </div>
+        <div class="introduce">
+            <div class="introduce_item">
+                <style>
+                    html,
+                    body {
+                        margin: 0;
+                        position: relative;
+                    }           
+                    #main {
+                        width: 600px;
+                        height: 500px;
+                        margin: 50px;
+                        border: 1px solid #eee;
+                    }
+                </style>
+                <div id='main'></div>
+                <div id='border'></div>
+                <script>
+                    var chart = echarts.init(document.getElementById('main'));
+                    var data = [
+                        { "name": "Hadoop", "value": 32 },
+                        { "name": "SQL", "value": 42 },
+                        { "name": "机器学习", "value": 31 },
+                        { "name": "回归", "value": 11 },
+                        { "name": "聚类", "value": 11 },
+                        { "name": "分类", "value": 11 },
+                        { "name": "R", "value": 23 },
+                        { "name": "Python", "value": 41 },
+                        { "name": "Spark", "value": 9 },
+                        { "name": "Shell", "value": 7 }
+                    ];
+                    var option = {
+                        tooltip: {},
+                        series: [{
+                            type: 'wordCloud',
+                            gridSize: 2,
+                            sizeRange: [12, 60],
+                            rotationRange: [0, 0],
+                            shape: 'circle',
+                            width: 400,
+                            height: 300,
+                            left: 50,
+                            top: 50,
+                            drawOutOfBound: false,
+                            shrinkToFit: true,
+                            data
+                        }]
+                    };
+                    chart.setOption(option);
+                    window.onresize = chart.resize;
+                </script>
+                <span class="introduce_item_title">这里是根据搜集到的资料中数据分析师需要掌握技能的词频统计，为了成功应聘，我们决定针对其中的Hadoop,SQL和机器学习进行深入的学习</span>
+            </div>
+            <div class="introduce_item">
+                <span class="introduce_item_titles">这里展示的是目标的3个大厂对对应技能的需求情况（根据招聘要求中的出现次数得出），可以看到不同大厂对不同技能的要求有不同的侧重点，以此针对性准备简历</span>
+                <div id="container" style="height: 500px; width: 70%;"></div>
+                <script type="text/javascript">
+                    var dom = document.getElementById('container');
+                    var myChart = echarts.init(dom, null, {
+                        renderer: 'canvas',
+                        useDirtyRect: false
+                    });
+                    var app = {};
+                    var option;
+                    option = {
+                        series: {
+                            type: 'sankey',
+                            layout: 'none',
+                            emphasis: {
+                                focus: 'adjacency'
+                            },
+                            data: [
+                                { name: 'Hadoop' },
+                                { name: '机器学习' },
+                                { name: 'SQL' },
+                                { name: '拼多多' },
+                                { name: '阿里巴巴' },
+                                { name: '字节跳动' }
+                            ],
+                            links: [
+                                { source: 'Hadoop', target: '拼多多', value: 16 },
+                                { source: 'Hadoop', target: '阿里巴巴', value: 8 },
+                                { source: 'Hadoop', target: '字节跳动', value: 6 },
+                                { source: '机器学习', target: '拼多多', value: 9 },
+                                { source: '机器学习', target: '阿里巴巴', value: 13 },
+                                { source: '机器学习', target: '字节跳动', value: 18 },
+                                { source: 'SQL', target: '拼多多', value: 13 },
+                                { source: 'SQL', target: '阿里巴巴', value: 11 },
+                                { source: 'SQL', target: '字节跳动', value: 11 }
+                            ]
+                        }
+                    };
+                    if (option && typeof option === 'object') {
+                        myChart.setOption(option);
+                    }
+                    window.addEventListener('resize', myChart.resize);
+                </script>
+            </div>
+        
+            <div class="introduce_item">
+                <div id="radial_tree" style="width: 50%; height: 500px;"></div>
+                <script type="text/javascript">
+                    var chart = echarts.init(document.getElementById('radial_tree'));
+                    
+                    var option = {
+                        tooltip: {
+                            trigger: 'item',
+                            triggerOn: 'mousemove'
+                        },
+                        series: [
+                            {
+                                type: 'tree',
+                                data: [
+                                    {
+                                        name: '绩点',
+                                        children: [
+                                            {
+                                                name: '学科基础类',
+                                                children: [
+                                                    { name: '管理学研究方法', value: 8 },
+                                                    { name: '管理学', value: 8 },
+                                                    { name: '管理科学与工程专业导论', value: 4 },
+                                                    { name: '大学英语', value: 14.8 },
+                                                    { name: '计算机应用能力水平', value: 3.3 },
+                                                    { name: '线性代数', value: 5.4 },
+                                                    { name: '大学信息技术基础', value: 5.4 },
+                                                    { name: '高等数学A', value: 10 },
+                                                    { name: '统计学', value: 4 }
+                                                ]
+                                            },
+                                            {
+                                                name: '专业课类',
+                                                children: [
+                                                    { name: '大数据概论', value: 8 },
+                                                    {
+                                                        name: '专业论文',
+                                                        children: [
+                                                            { name: '大数据管理与应用专业文献阅读', value: 8 },
+                                                            { name: '大数据管理与应用专业论文写作', value: 6.6 }
+                                                        ]
+                                                    },
+                                                    { name: '数据库设计与开发', value: 8 },
+                                                    { name: '数据运营与流程创新', value: 8 },
+                                                    { name: '数据库理论', value: 7.4 },
+                                                    { name: '国际企业文化', value: 6.6 },
+                                                    { name: '大数据技术原理与应用', value: 6.6 },
+                                                    { name: '管理运筹学', value: 8.1 },
+                                                    { name: '基于R的统计分析', value: 3 }
+                                                ]
+                                            },
+                                            {
+                                                name: '实践/实验类',
+                                                children: [
+                                                    { name: '企业认识实习', value: 4 },
+                                                    { name: '网络工程实践', value: 8 },
+                                                    { name: '创新创业实践', value: 8 },
+                                                    { name: '网络智能技术基础与应用', value: 8 },
+                                                    { name: '网络爬虫开发实践', value: 6.6 },
+                                                    { name: 'Python数据分析', value: 6.6 },
+                                                    { name: '数据挖掘与应用', value: 9 }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ],
+                                top: '1%',
+                                left: '7%',
+                                bottom: '1%',
+                                right: '20%',
+                                symbolSize: 10,
+                                layout: 'radial',
+                                label: {
+                                    position: 'right',
+                                    verticalAlign: 'middle',
+                                    align: 'right',
+                                    fontSize: 12
+                                },
+                                leaves: {
+                                    label: {
+                                        position: 'right',
+                                        verticalAlign: 'middle',
+                                        align: 'right'
+                                    }
+                                },
+                                emphasis: {
+                                    focus: 'descendant'
+                                },
+                                expandAndCollapse: true,
+                                initialTreeDepth: 3,
+                                animationDuration: 750
+                            }
+                        ]
+                    };
+
+                    chart.setOption(option);
+
+                    window.onresize = function () {
+                        chart.resize();
+                    };
+                </script>
+                <span class="introduce_item_titles">这里展示的是小组组长跟求职相关的重点课程绩点，主要分为了三个大类，分别为“学科基础类”、“专业课类”、“实践/实验类”，每一个末端节点中的数字代表学分和绩点的乘积。从图中可以发现因应聘者在“实习/实践类”的综合成绩较好，可以用于简历的撰写。</span>
+            </div>
+            <div class="introduce_item">
+                <span class="introduce_item_titles">这个图在“校园经历”，“社会实践”，“个人特长”三个方面列出应聘者的各项能力，是应聘优势的展现</span>
+                <div id="sunburst_chart" style="width: 63%; height: 500px;"></div>
+                <script type="text/javascript">
+                    var chart = echarts.init(document.getElementById('sunburst_chart'));
+                    var option = {
+                        series: {
+                            type: 'sunburst',
+                            radius: [0, '90%'],
+                            center: ['50%', '60%'],
+                            label: {
+                                rotate: 'radial'
+                            },
+                            highlightPolicy: 'descendant',
+                            sort: null,
+                            data: [
+                                {
+                                    name: '校园经历',
+                                    value: 45,
+                                    children: [
+                                        {
+                                            name: '',
+                                            value: 45,
+                                            children: [
+                                                {
+                                                    name: '2024年亚太地区国际大学生数学建模竞赛国际二等奖',
+                                                    value: 6,
+                                                },
+                                                {
+                                                    name: '2024年中国电机工程学会杯全国大学生电工数学建模竞赛全国二等奖',
+                                                    value: 6,
+                                                },
+                                                {
+                                                    name: '2023年第十四届正大杯全国大学生市场调查与分析大赛（上海赛区）一等奖',
+                                                    value: 7,
+                                                },
+                                                {
+                                                    name: '2023年学创杯全国大学生创业综合模拟总决赛全国二等奖',
+                                                    value: 6,
+                                                },
+                                                {
+                                                    name: '2024年第十届全国大学生统计建模竞赛（上海赛区）一等奖',
+                                                    value: 7,
+                                                },
+                                                {
+                                                    name: '2023年中国大学生工程实践与创新能力大赛全国铜奖',
+                                                    value: 5,
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    name: '社会实践',
+                                    value: 35,
+                                    children: [
+                                        {
+                                            name: '字节跳动数据分析岗',
+                                            value: 16,
+                                            children: [
+                                                { name: '双11小报', value: 7 },
+                                                { name: '日常数据分析', value: 6 }
+                                            ]
+                                        },
+                                        {
+                                            name: '宝尊电子商务有限公司运营岗',
+                                            value: 19,
+                                            children: [
+                                                { name: '产品运营', value: 7 },
+                                                { name: '数据管理', value: 10 }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    name: '技能特长',
+                                    value: 30,
+                                    children: [
+                                        {
+                                            name: '语言',
+                                            value: 5,
+                                            children: [
+                                                { name: 'CET-6', value: 5 }
+                                            ]
+                                        },
+                                        {
+                                            name: '计算机',
+                                            value: 15,
+                                            children: [
+                                                { name: 'offce', value: 1 },
+                                                { name: '剪映', value: 1 },
+                                                { name: 'c/c++', value: 3 },
+                                                { name: 'Python', value: 3 },
+                                                { name: 'R-Studio', value: 2 },
+                                                { name: 'SQL Server', value: 2 }
+                                            ]
+                                        },
+                                        {
+                                            name: '个人技能',
+                                            value: 6,
+                                            children: [
+                                                { name: '软文写作', value: 3 },
+                                                { name: '公众号运营', value: 3 }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            itemStyle: {
+                                borderRadius: 7,
+                                borderWidth: 2
+                            }
+                        },
+                        tooltip: {
+                            trigger: 'item',
+                            formatter: '{b}: {c}'
+                        }
+                    };
+
+                    chart.setOption(option);
+
+                    window.onresize = function () {
+                        chart.resize();
+                    };
+                </script>
+            </div>
+
+        </div>
+        <img class="music_img" src="./img/music_img.png" alt="">
+    </div>
+</body>
+
+<script>
+    let mucics = document.getElementById('audio')
+    document.body.addEventListener('mousemove', function() {
+        setTimeout(() => {
+            mucics.play();
+        }, 2000);
+    }, false);
+</script>
+</html>

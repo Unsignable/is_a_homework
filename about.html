@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>小组相关</title>
+    <link rel="stylesheet" href="./css/about.css">
+</head>
+
+<body>
+    <div class="about">
+        <h3 class="about_tit">目标互联网大厂</h3>
+        <img class="about_bgc" src="./img/imgs19.jpg" alt="">
+        <div class='ribbon'>
+            <a href='./index.html'><span>数据展示</span></a>
+            <a href='./about.html'><span>小组相关</span></a>
+        </div>
+        <div class="me">
+            <img class="me_img" src="./img/img9.jpg" alt="">
+            <span class="me_tit animate ">。。。
+            </span>
+        </div>
+        <div class="videos">
+            <span>
+                        。。。
+                    </span>
+            <video width="60%" controls id="video" preload="auto" muted  height="100%" autoplay="autoplay" loop="loop" type="video/mp4" src="./video/vs.mp4"></video>
+
+        </div>
+    </div>
+</body>
+<script>
+    let mucics = document.getElementById('video')
+    document.body.addEventListener('mousemove', function() {
+        setTimeout(() => {
+            mucics.play();
+        }, 2000);
+    }, false);
+</script>
+
+</html>
